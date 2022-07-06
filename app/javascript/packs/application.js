@@ -18,6 +18,16 @@ $(function () {
       data: { title: title },
       dataType: 'json'
     })
+      .done(function (data) {
+        $('.js-messages li').remove();
+
+        // 以下のコードを追加する
+        $(data).each(function (i, message) {
+          $('.js-messages').append(
+            `<li class="message"><a href="/messages/${message.id}">${message.title}</a></li>`
+          );
+        });
+      })
   });
 });
 
